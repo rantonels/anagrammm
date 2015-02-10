@@ -9,6 +9,8 @@ ana.py requires the following nonstandard python modules:
 requests
 json
 unidecode
+praw
+progressbar
 ```
 
 ## System requirements
@@ -96,7 +98,7 @@ you can now run
 >>> db.find_anagrams()
 ```
 
-and this will do the same as readncalc.py, and will display the same information. However, when it's done, db will now have the .anagrams attribute:
+and this will do the same as readncalc.py. (This displays a progress bar, if you want to print directly the anagram groups, do ```db.find_anagrams(verbose=True)```). When it's done, db will now have the .anagrams attribute:
 
 ```python
 >>> len(db.anagrams)
@@ -107,8 +109,41 @@ this is a list of candidate anagram groups, which in turn are lists of comments 
 
 ```python
 >>> db.anagrams.sort(key = lambda a : len(a[0].clean))
->>> db[:100]
+>>> top = db[:100]
 ```
 
 and so on.
 
+A ```ana2string()``` function turns anagram groups into human-readable multiline strings like in the output of ```.find_anagrams(verbose=True)```. For example:
+
+```python
+>>> for i in range(100):
+>>>    print "# %d"%i
+>>>    print ana2string(db[-i])
+>>>    print
+```
+
+will print the longest 100 anagrams in human readable format.
+
+### Posting
+
+**Do not use this feature if you don't own /u/anagrammm. Your posts using this method will include links to /u/anagrammm and information about him. Do edit the source code to suit your account if you want to post using this feature. Ignore this warning and you will just be giving me and my bot some bizarre publicity.**
+
+Import the ana module and create a Commenter() instance:
+
+```python
+import ana
+com = ana.Commenter()
+```
+
+this will prompt you for reddit username and password.
+
+You can then reply to member comments of an anagram group with:
+
+```python
+com.comment_anagram_group(a)
+```
+
+where ```a``` is an anagram group, such as an element of ```db.anagrams```.
+
+**Another warning: as of now, this does NOT check if you have already replied to these people. NOR does it check if bots are welcome there. Use with extreme caution. No, wait: when in doubt, don't use.**
