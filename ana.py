@@ -314,7 +314,9 @@ def doit():
         print "saving %d-entries db..."%len(testdb.data)
         pickle.dump(testdb,open('data','w'))
 
-    testdb.find_anagrams()
+    print "all crawlins are finished."
+
+    #testdb.find_anagrams()
 
 
 class Commenter():
@@ -340,8 +342,16 @@ class Commenter():
 
 \[[More about me](http://www.reddit.com/r/botwatch/comments/2vac36/find_recent_comments_that_are_anagrams_of/)\]  \[[Source](https://github.com/rantonels/anagrammm)\]'''
 
-        comm1 = commstring.format(twinurl = REDDI + secondpm,   twinuname = c2.author.name ,twinbody=c2.body, twinsub=c2.subreddit)
-        comm2 = commstring.format(twinurl = REDDI + firstpm,    twinuname = c1.author.name ,twinbody=c1.body, twinsub=c1.subreddit)
+        comm1 = commstring.format(  twinurl = REDDI + secondpm,   
+                                    twinuname = unidecode.unidecode(c2.author.name),
+                                    twinbody = unidecode.unidecode(c2.body), 
+                                    twinsub = c2.subreddit
+                                    )
+        comm2 = commstring.format(  twinurl = REDDI + firstpm,
+                                    twinuname = unidecode.unidecode(c1.author.name),
+                                    twinbody = unidecode.unidecode(c1.body), 
+                                    twinsub = c1.subreddit
+                                    )
 
 
         print "replying to 1"
