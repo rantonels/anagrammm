@@ -12,6 +12,8 @@ import cPickle as pickle
 
 import HTMLParser
 
+import praw
+
 pattern = re.compile('[\W_]+')
 splitpattern = re.compile(r"[\w']+")
 
@@ -45,7 +47,7 @@ mCOMMENTS = 20
 
 POSTS_PER_SUB = 400
 
-hds = {'User-Agent' : 'a bot that finds anagram comments by /u/rantonels' }
+hds = {'User-Agent' : 'anagrammm v0.5. A bot that finds anagram comments by /u/rantonels' }
 
 class DB():
     def __init__(self):
@@ -303,3 +305,43 @@ def doit():
 
     testdb.find_anagrams()
 
+
+class Commenter():
+    def __init__(self):
+        self.username = raw_input('Insert username: ')
+        self.password = raw_input('Insert password: ')
+        user_agent = (hds['User-Agent'])
+
+        self.r = praw.Reddit(user_agent = user_agent)
+
+        print "logging in..."
+        self.r.login(self.username,self.password)
+
+    def comment_pair(self,firstpm,secondpm):
+        print "getting submission 1..."
+        c1 = self.r.get_submission(REDDI + firstpm).comments[0]
+        print "getting submission 2..."
+        c2 = self.r.get_submission(REDDI + secondpm).comments[0]
+        
+        commstring = r'''Your comment is an anagram of [this one]({twinurl}) by /u/{twinuname} in /r/{twinsub}:
+
+>{twinbody}
+
+\[[More about me](http://www.reddit.com/r/botwatch/comments/2vac36/find_recent_comments_that_are_anagrams_of/)\]  \[[Source](https://github.com/rantonels/anagrammm)\]'''
+
+        comm1 = commstring.format(twinurl = REDDI + secondpm,   twinuname = c2.author.name ,twinbody=c2.body, twinsub=c2.subreddit)
+        comm2 = commstring.format(twinurl = REDDI + firstpm,    twinuname = c1.author.name ,twinbody=c1.body, twinsub=c1.subreddit)
+
+
+        print "replying to 1"
+        c1.reply(comm1)
+
+        print "replying to 2"
+        c2.reply(comm2)
+
+    def comment_anagram_group(self,group):
+        if len(group) != 2:
+            print "Sorry! I don't know yet how to comment to a number of people != 2."
+            return
+
+        self.comment_pair(group[0].pm,group[1].pm)
