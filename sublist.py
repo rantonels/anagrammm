@@ -109,7 +109,7 @@ sublist = [
             'xboxone',
             'futurology',
             'murica',
-            'fatlogic',
+            #'fatlogic',            #rule against linking other subs (brigade accusations)
             'podemos',
             'starcraft',
             'facepalm',
