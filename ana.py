@@ -5,14 +5,11 @@ import hashlib
 import re
 import requests
 import json
-
 import unidecode
-
 import cPickle as pickle
-
 import HTMLParser
-
 import praw
+import progressbar
 
 pattern = re.compile('[\W_]+')
 splitpattern = re.compile(r"[\w']+")
@@ -39,6 +36,25 @@ class Word():
 
 REDDIT  = '''http://www.reddit.com/'''
 REDDI   = '''http://www.reddit.com'''
+
+
+
+def ana2string(nan):
+    out = ""
+    out+= "\t%d-element anagram group\n"%len(nan)
+    out+="\n"
+
+    for w in nan:
+        out+= "[/r/%s]\t%s: %s\n"%(
+                w.sub.ljust(16),
+                unidecode.unidecode(w.author).ljust(20),
+                unidecode.unidecode(w.raw)
+                    )
+        out+= w.ordwordlist + "\n"
+    out+="\n"
+    for w in nan:
+        out += REDDI + (unidecode.unidecode(w.pm)) + "\n"
+    return out
 
 
 mLEN = 6
@@ -206,7 +222,7 @@ class DB():
 
 
 
-    def find_anagrams(self):
+    def find_anagrams(self,verbose = False):
 
         #presorting should optimize everything
 
@@ -214,6 +230,11 @@ class DB():
         self.compute_hashset()
 
         i = 0
+
+        if (not verbose):
+            bar = progressbar.ProgressBar(maxval=100, 
+                widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()]).start()
+
         while (i < len(self.data)-1):
             #print "processing startmex " + self.data[cc[1]].ordered
             #nan = []
@@ -246,30 +267,18 @@ class DB():
 
                 #save matching group
                 if len(nan) > 1:
-                            print
-                            print "\t%d-element anagram group"%len(nan)
-                            print
-
-                            for w in nan:
-                                print "[/r/%s]\t%s: %s"%(
-                                        w.sub.ljust(16),
-                                        unidecode.unidecode(w.author).ljust(20),
-                                        unidecode.unidecode(w.raw)
-                                            )
-                                print w.ordwordlist
-                            print
-                            for w in nan:
-                                print REDDI + (unidecode.unidecode(w.pm))
-                            
+                            if verbose:
+                                print ana2string(nan)                                                       
                             self.anagrams.append(nan)
 
-
-                
-        
-
+    
+            
             #standard increment
             i+=1
 
+            if (not verbose) and (i%100 == 0):
+                bar.update((100*i)/len(self.data) )
+                
 
 
 #            for w in self.data[cc[1]:]:
@@ -289,6 +298,8 @@ class DB():
 #            
 #            cc = self.search_candidates()
 
+        if (not verbose):
+            bar.finish()
 
 def doit():
 

@@ -1,8 +1,11 @@
 import ana
 import cPickle as pi
 
+
+print "loading database..."
 db = pi.load(open('data','r'))
 
-print len(db.data)
+print "loaded %d comments."%len(db.data)
 
-db.find_anagrams()
+print "finding anagrams..."
+db.find_anagrams(verbose = True)
