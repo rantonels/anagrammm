@@ -5,7 +5,7 @@ sublist = [
             #'aww',             #disallowed
             'blackpeopletwitter',
             'todayilearned',
-            'wtf',
+            #'wtf',             #banned us
             'gifs',
             'videos',
             'gaming',
@@ -18,7 +18,7 @@ sublist = [
     #       'pcmasterrace',     #they don't allow links in posts
             'soccer',
             '4chan',
-            #'news',            #disallow
+            #'news',            #disallow (also they banned us? Have we even posted here?)
             'showerthoughts',
             'politics',
             'dota2',
@@ -80,7 +80,7 @@ sublist = [
             'twoxchromosomes',
             'historyporn',
             'roosterteeth',
-            'comics',
+            #'comics',              #banned
             'youtubehaiku',
             'tf2',
             'teenagers',
@@ -121,7 +121,7 @@ sublist = [
             'sneakers',
             'militaryporn',
             'creepypms',
-            'cringe',
+            #'cringe',              #banned us
             'thelastairbender',
             'justrolledintotheshop',
             'wheredidthesodago',
