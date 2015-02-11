@@ -10,6 +10,7 @@ import cPickle as pickle
 import HTMLParser
 import praw
 import progressbar
+import difflib
 
 pattern = re.compile('[\W_]+')
 splitpattern = re.compile(r"[\w']+")
@@ -54,16 +55,22 @@ def ana2string(nan):
     out+="\n"
     for w in nan:
         out += REDDI + (unidecode.unidecode(w.pm)) + "\n"
+
+    out += "SCORE: %f\n"%score(nan)
+
     return out
 
+def score(a): #scores an anagram according to difflib. Lower score = better
+    return difflib.SequenceMatcher(None,a[0].clean,a[1].clean).ratio()
 
 mLEN = 6
-MLEN = 60
+MLEN = 150
 mCOMMENTS = 20
 
-POSTS_PER_SUB = 400
+POSTS_PER_SUB = 500
 
 hds = {'User-Agent' : 'anagrammm v0.5. A bot that finds anagram comments by /u/rantonels' }
+
 
 class DB():
     def __init__(self):
@@ -242,7 +249,7 @@ class DB():
 
             if (self.hashset[i] == self.hashset[i+1]):  #start of a matching group
                 mstart = i
-                while(self.hashset[i] == self.hashset[i+1]):
+                while(  (i<len(self.data)-1) and  (self.hashset[i] == self.hashset[i+1])) :
                     i+=1    #we increment until we're at the last element of the matching group
                 #the candidate matching group is mstart:i
                

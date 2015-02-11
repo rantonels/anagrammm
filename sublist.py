@@ -2,7 +2,7 @@ sublist = [
             'funny',
             'adviceanimals',
             'pics',
-            'aww',
+            #'aww',             #disallowed
             'blackpeopletwitter',
             'todayilearned',
             'wtf',
@@ -18,15 +18,15 @@ sublist = [
     #       'pcmasterrace',     #they don't allow links in posts
             'soccer',
             '4chan',
-            'news',
+            #'news',            #disallow
             'showerthoughts',
             'politics',
             'dota2',
             'fatpeoplehate',
             'movies',
-            'nba',
+            #'nba',             #they flat out banned us
             'pokemon',
-            'science',
+            #'science',         #disallow
             'technology',
             'woahdude',
             'jokes',
@@ -75,7 +75,7 @@ sublist = [
             'mildlyinfuriating',
             'writingprompts',
             'coys',
-            'anime',
+            #'anime',           #they hate bots
             'photoshopbattles',
             'twoxchromosomes',
             'historyporn',
@@ -90,7 +90,7 @@ sublist = [
             'starwars',
             'bindingofisaac',
             'india',
-            'askscience',
+            #'askscience',      #disallow
             'thathappened',
             'australia',
             'unexpectedthuglife',
@@ -126,7 +126,7 @@ sublist = [
             'justrolledintotheshop',
             'wheredidthesodago',
             'nosleep',
-            'talesfromtechsupport',
+            #'talesfromtechsupport', #disallow
             'cosplaygirls',
             'television',
             'shittyaskscience',
