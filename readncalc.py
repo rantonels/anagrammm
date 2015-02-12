@@ -9,3 +9,5 @@ print "loaded %d comments."%len(db.data)
 
 print "finding anagrams..."
 db.find_anagrams(verbose = True)
+
+pi.dump(open('anagrams','w'),db.anagrams)

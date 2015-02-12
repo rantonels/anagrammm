@@ -1,5 +1,6 @@
 data
 backup
+anagrams
 list
 *.pyc
 *.swp

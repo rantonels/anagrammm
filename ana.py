@@ -76,7 +76,7 @@ mLEN = 6
 MLEN = 150
 mCOMMENTS = 20
 
-POSTS_PER_SUB = 500
+POSTS_PER_SUB = 800
 
 randomstrings = [
             
