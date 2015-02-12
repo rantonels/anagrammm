@@ -69,7 +69,7 @@ sublist = [
             'skyrim',
             'minecraft',
             'oldschoolcool',
-            'polandball',
+            #'polandball',          #banned us (they ban all bots)
             'relationships',
             'hiphopheads',
             'mildlyinfuriating',
