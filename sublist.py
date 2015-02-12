@@ -28,7 +28,7 @@ sublist = [
             'pokemon',
             #'science',         #disallow
             'technology',
-            'woahdude',
+            'woahdude',         #they love us :)
             'jokes',
             'globaloffensive',
             'tumblrinaction',
@@ -176,8 +176,9 @@ sublist = [
             'formula1',
             #'carporn',         #a very quiet sub
             #'netflixbestof',   #few good comments
-            'fifa'
+            'fifa',
             #'eyebleach'        #nothing good
+            'woahtube'          #they should like us :)
         ]
 
 def check_sublist_consistency():
