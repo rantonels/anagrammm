@@ -1,5 +1,13 @@
 # anagrammm
-A python bot that crawls reddit and finds anagram comments. The heart of /u/anagrammm.
+###[Official reddit thread](https://www.reddit.com/r/botwatch/comments/2vac36/find_recent_comments_that_are_anagrams_of/)
+
+A python bot by [/u/rantonels](https://www.reddit.com/u/rantonels) that crawls reddit and finds anagram comments. The heart of [/u/anagrammm](https://reddit.com/u/anagrammm).
+
+## A word of warning
+
+This repository is only kept for transparency, completeness, convenience, and similar motives. It is not maintained so that it could be easily used by others. Similarly, this documentation is often incomplete, wrong, deceptive and frustrating.
+
+If you want to do the same, you are free to download and inspect the code, but don't expect it to work out of the box. You'd be better off starting from scratch or forking.
 
 ## Dependencies
 
@@ -114,7 +122,7 @@ this is a list of candidate anagram groups, which in turn are lists of comments 
 
 and so on.
 
-A ```ana2string()``` function turns anagram groups into human-readable multiline strings like in the output of ```.find_anagrams(verbose=True)```. For example:
+An ```ana2string()``` function turns anagram groups into human-readable multiline strings like in the output of ```.find_anagrams(verbose=True)```. For example:
 
 ```python
 >>> for i in range(100):
