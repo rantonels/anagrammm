@@ -8,6 +8,6 @@ db = pi.load(open('data','r'))
 print "loaded %d comments."%len(db.data)
 
 print "finding anagrams..."
-db.find_anagrams(verbose = True)
+db.find_anagrams(verbose = False)
 
-pi.dump(open('anagrams','w'),db.anagrams)
+pi.dump(db.anagrams,open('anagrams','w'))

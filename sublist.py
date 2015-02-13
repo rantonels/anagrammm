@@ -38,7 +38,8 @@ sublist = [
             'atheism',
             'tifu',
             'nottheonion',
-            'reactiongifs',
+            #'reactiongifs',        #cannot post here (banned? Who knows. Inscrutable Reddit burocracy I guess.
+                                    # They really could have bothered to write a letter though.)
             'squaredcircle',
             'tumblr',
             'destinythegame',
@@ -56,7 +57,7 @@ sublist = [
             'oddlysatisfying',
             'explainlikeimfive',
             'hockey',
-            'kotakuinaction',
+            #'kotakuinaction',      #crosslinking not allowed (Rule 4)
             'games',
             'conspiracy',
             'creepy',
@@ -124,7 +125,7 @@ sublist = [
             #'cringe',              #banned us
             'thelastairbender',
             'justrolledintotheshop',
-            'wheredidthesodago',
+            #'wheredidthesodago',   #banned us
             'nosleep',
             #'talesfromtechsupport', #disallow
             'cosplaygirls',
@@ -176,9 +177,10 @@ sublist = [
             'formula1',
             #'carporn',         #a very quiet sub
             #'netflixbestof',   #few good comments
-            'fifa',
+            'fifa'
             #'eyebleach'        #nothing good
-            'woahtube'          #they should like us :)
+            #'woahtube'          #they should like us :)
+                                #and maybe they do, but they don't comment.
         ]
 
 def check_sublist_consistency():
