@@ -9,7 +9,7 @@ sublist = [
             'gifs',
             'videos',
             'gaming',
-            'askreddit',
+            #'askreddit',       #banned us
             'leagueoflegends',
             'worldnews',
             'trees',
