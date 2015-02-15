@@ -1,9 +1,8 @@
 import ana
-import cPickle as pi
 
 
 print "loading database..."
-db = pi.load(open('data','r'))
+db = ana.load_crawld()
 
 print "loaded %d comments."%len(db.data)
 

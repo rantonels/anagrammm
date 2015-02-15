@@ -29,6 +29,12 @@ htmlparser = HTMLParser.HTMLParser()
 #tests = '''Hash functions are used inside some cryptographic algorithms, in digital signatures, message authentication codes, manipulation detection, fingerprints, checksums (message integrity check), hash tables, password storage and much more. As a Python programmer you may need these functions to check for duplicate data or files, to check data integrity when you transmit information over a network, to securely store passwords in databases, or maybe some work related to cryptography.'''
 
 
+def ensure_dir(f):
+    d = os.path.dirname(f)
+    if not os.path.exists(d):
+        os.makedirs(d)
+
+
 class Word():
     def __init__(self,raw):
         self.raw = raw
@@ -335,21 +341,51 @@ class DB():
 
 def doit():
 
+    ensure_dir('./crawld/')
+
     testdb = DB()
 
     import sublist
 
     for sub in sublist.sublist:
-        testdb.crawl_subr(sub)
 
+        try:
+            testdb.crawl_subr(sub)
+        except Exception, e:
+            print str(e)
 
         print "saving %d-entries db..."%len(testdb.data)
-        pickle.dump(testdb,open('data','w'))
+        pickle.dump(testdb,open('crawld/'+sub,'w'))
+
+        del testdb.data
+        testdb.data = []
 
     print "all crawlins are finished."
 
     #testdb.find_anagrams()
 
+def load_crawld():
+    out = DB()
+    
+    ll = os.listdir('crawld')
+
+    if len(ll) == 0:
+        print "There are no files in crawld/."
+        return None
+
+    bar = progressbar.ProgressBar(maxval=100, 
+        widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()]).start()
+
+
+    i=0
+    bar.update(0)
+    for p in ll:
+        i+=1
+        tmp = pickle.load(open('crawld/'+p,'r'))
+        out.data += tmp.data
+        del tmp
+        bar.update((100*i)/len(ll))
+    return out
 
 class Commenter():
     def __init__(self,askpass = False):

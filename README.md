@@ -41,7 +41,7 @@ Enter the python interpreter, and run:
 >>> ana.doit()
 ```
 
-this will connect to the list of subreddits in sublist.py and will crawl them for comments. After each sub is finished, ana.py will download the current database to the file 'data' in the project folder. This file is overwritten, so any data from previous runs will be lost.
+this will connect to the list of subreddits in sublist.py and will crawl them for comments. After each sub is finished, ana.py will download the current database to the file `crawld/subname`. These files are overwritten, so any data from previous runs will be lost. It is advisable to clear the `crawld/` folder before running `ana.doit()`.
 
 This command takes **a lot** of time. Run it overnight.
 
@@ -55,12 +55,26 @@ Run
 python ./readncalc.py
 ```
 
-this loads up the 'data' file, prints the number of comments in the database, and searches for anagrams, printing them in the process. Information printed includes:
+this loads up the `crawld` folder, prints the number of comments in the database, and searches for anagrams, dumping them in the `anagrams` pickled file as a list of `Word()` instances. Editing this line from readncalc.py:
+
+```python
+db.find_anagrams(verbose = False)
+```
+
+to
+
+```python
+db.find_anagrams(verbose = True)
+```
+
+makes the anagrams get printed while they're being found, in human readable format. Info printed includes:
 
 - Subreddits and authors of the comments
 - The raw comment bodies
 - A "permstring" (something like "anagrammm:I:love:"), you can safely ignore this
 - Direct permalink URLs
+
+(this is the behaviour of the `ana2string()` function documented below).
 
 ### Finding anagrams (nicer)
 
@@ -68,13 +82,12 @@ Fire up the python shell and import ana.py and cPickle:
 
 ```python
 >>> import ana
->>> import cPickle as pickle
 ```
 
-then load 'data':
+then load the data:
 
 ```python
->>> db = pickle.load(open('data','r'))
+>>> db = ana.load_crawld()
 ```
 
 (this should take a little.) Then the .data attribute of db is a list of comment objects:
