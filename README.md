@@ -13,28 +13,28 @@ If you want to do the same, you are free to download and inspect the code, but d
 
 ana.py requires the following nonstandard python modules:
 
-```
-requests
-json
-unidecode
-praw
-progressbar
-```
+- `requests` module for HTTP requests
+- `json` module for JSON parsing
+- `unidecode` module for Unicode -> ASCII approximation
+- `praw` is a python wrapper for Reddit's API (only used for posting, crawling is done by issuing queries directly)
+- `progressbar` for style
+
+Install these modules with `pip` or `easy_install`.
 
 ## System requirements
 
 *this paragraph is only useful to users of embedded systems. Anyone with a normal laptop should have no problems.*
 
-The 'data' file can get pretty big, so make sure you have a GB or two of free disk space.
+The `crawld` fold can get pretty big, so make sure you have a GB or two of free disk space.
 
-The scripts are not efficient and will attempt to load all of the database into RAM at the same time. Beware.
+`readncalc.py` is not efficient and will attempt to load all of the database into RAM at the same time. Beware.
 
 
 ## Usage
 
 ### Crawling
 
-Enter the python interpreter, and run:
+From the main directory, enter the python interpreter, and run:
 
 ```python
 >>> import ana
@@ -126,7 +126,13 @@ and this will do the same as readncalc.py. (This displays a progress bar, if you
 528
 ```
 
-this is a list of candidate anagram groups, which in turn are lists of comments that are anagrams of eachother. This is all the information you need. For example, you can sort by length:
+this is a list of candidate anagram groups, which in turn are lists of comments that are anagrams of eachother. 
+
+**At this point, it is advisable you pickle.dump the `.anagrams` list in a file and exit the python shell, so the RAM for db.data can be freed.**
+
+You can then reload the anagram group list.
+
+This list includes all the information you need. For example, you can sort by length:
 
 ```python
 >>> db.anagrams.sort(key = lambda a : len(a[0].clean))
@@ -134,6 +140,15 @@ this is a list of candidate anagram groups, which in turn are lists of comments 
 ```
 
 and so on.
+
+You are also provided a score function:
+
+```python
+>>> ana.score(db.anagrams[0])
+0.885345698
+```
+
+which computes the difference of the strings in the anagram pair as a [0-1] float using the difflib library; 0 is very different, and 1 is identical. This function is meant to be used for sorting alongside the method above (for example, a linear combination of clean length and score can be used as the key parameter for the sort).
 
 An ```ana2string()``` function turns anagram groups into human-readable multiline strings like in the output of ```.find_anagrams(verbose=True)```. For example:
 
