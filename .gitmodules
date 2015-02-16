@@ -1,0 +1,6 @@
+[submodule "repo"]
+	path = repo
+	url = https://github.com/rmccue/test-repository.git
+[submodule "streaming-pickle"]
+	path = streaming-pickle
+	url = ./streaming-pickle/
