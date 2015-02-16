@@ -54,7 +54,7 @@ sublist = [
             'circlejerk',
             'me_irl',
             'food',
-            'cringepics',
+            #'cringepics',          #maybe banned?
             'oddlysatisfying',
             'explainlikeimfive',
             'hockey',
