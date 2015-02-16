@@ -28,7 +28,8 @@ sublist = [
             'pokemon',
             #'science',         #disallow
             'technology',
-            'woahdude',         #they love us :)
+            #'woahdude',         #they love us :)
+                                #YET THEY BANNED US.
             'jokes',
             'globaloffensive',
             'tumblrinaction',

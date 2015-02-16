@@ -79,10 +79,10 @@ def score(a): #scores an anagram according to difflib. Lower score = better
     return difflib.SequenceMatcher(None,a[0].clean,a[1].clean).ratio()
 
 mLEN = 6
-MLEN = 150
+MLEN = 200
 mCOMMENTS = 20
 
-POSTS_PER_SUB = 800
+POSTS_PER_SUB = 1000
 
 randomstrings = [
             

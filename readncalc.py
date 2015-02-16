@@ -1,5 +1,5 @@
 import ana
-
+import cPickle as pi
 
 print "loading database..."
 db = ana.load_crawld()
